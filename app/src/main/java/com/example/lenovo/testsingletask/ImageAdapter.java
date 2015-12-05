@@ -19,6 +19,7 @@ public class ImageAdapter extends BaseAdapter {
     public ImageAdapter(Context context) {
         this.context=context;
         imageLoader=new ImageLoader();
+        imageLoader.setI_imageCache(new DoubleCache());
         inflater=LayoutInflater.from(context);
 
     }

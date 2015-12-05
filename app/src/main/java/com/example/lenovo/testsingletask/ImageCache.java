@@ -6,7 +6,7 @@ import android.util.LruCache;
 /**
  * Created by lenovo on 2015/12/3.
  */
-public class ImageCache {
+public class ImageCache  implements I_ImageCache {
     private LruCache<String,Bitmap> imageCaches;
 
     public ImageCache() {

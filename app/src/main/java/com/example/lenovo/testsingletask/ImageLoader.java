@@ -17,13 +17,30 @@ import java.util.concurrent.Executors;
  */
 public class ImageLoader {
 
-    ImageCache imgaCache=new ImageCache();
+
+    boolean useDiskCache;
+    I_ImageCache i_imageCache;
+
+    public void setI_imageCache(I_ImageCache i_imageCache) {
+        this.i_imageCache = i_imageCache;
+    }
+
+    public void setUseDiskCache(boolean useDiskCache) {
+        this.useDiskCache = useDiskCache;
+    }
+
+    public boolean isUseDiskCache() {
+        return useDiskCache;
+    }
+
+   // ImageCache imgaCache=new ImageCache();
+    //DiskCache diskCache=new DiskCache();
     ExecutorService executorService= Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
 
     public void displayImage(final ImageView imageView, final String url){
-        if (imgaCache.get(url)!=null){
-            imageView.setImageBitmap(imgaCache.get(url));
+        if (i_imageCache.get(url)!=null){
+            imageView.setImageBitmap(i_imageCache.get(url));
             return;
         }
         imageView.setTag(url);
@@ -37,7 +54,7 @@ public class ImageLoader {
                 if (imageView.getTag().equals(url)){
                     imageView.setImageBitmap(bitmap);
                 }
-                imgaCache.put(url,bitmap);
+                i_imageCache.put(url,bitmap);
             }
         });
 
